@@ -16,7 +16,7 @@ struct PersistenceController {
     // MARK: - 2. PERSISTENT CONTAINER
     let container: NSPersistentContainer
 
-    // MARK: - INITIALIZATION (load the persistent store)
+    // MARK: - 3. INITIALIZATION (load the persistent store)
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "Devote")
         if inMemory {
@@ -34,9 +34,12 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
+        for i in 0..<5 {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
+            newItem.task = "Sample task No\(i)"
+            newItem.completion = false
+            newItem.id = UUID()
         }
         do {
             try viewContext.save()
