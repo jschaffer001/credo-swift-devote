@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ACAFAB0229DCE8BB00155068 /* HideKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAFAB0129DCE8BB00155068 /* HideKeyboardExtension.swift */; };
 		ACFBE1F329CE150100E1F159 /* DevoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBE1F229CE150100E1F159 /* DevoteApp.swift */; };
 		ACFBE1F529CE150100E1F159 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBE1F429CE150100E1F159 /* ContentView.swift */; };
 		ACFBE1F729CE150100E1F159 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACFBE1F629CE150100E1F159 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ACAFAB0129DCE8BB00155068 /* HideKeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardExtension.swift; sourceTree = "<group>"; };
 		ACFBE1EF29CE150100E1F159 /* Devote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Devote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACFBE1F229CE150100E1F159 /* DevoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevoteApp.swift; sourceTree = "<group>"; };
 		ACFBE1F429CE150100E1F159 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		ACFBE20E29CE15FD00E1F159 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				ACAFAB0129DCE8BB00155068 /* HideKeyboardExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 			files = (
 				ACFBE1FC29CE150100E1F159 /* Persistence.swift in Sources */,
 				ACFBE21E29CE631600E1F159 /* Contant.swift in Sources */,
+				ACAFAB0229DCE8BB00155068 /* HideKeyboardExtension.swift in Sources */,
 				ACFBE1F529CE150100E1F159 /* ContentView.swift in Sources */,
 				ACFBE1FF29CE150100E1F159 /* Devote.xcdatamodeld in Sources */,
 				ACFBE1F329CE150100E1F159 /* DevoteApp.swift in Sources */,
