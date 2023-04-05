@@ -100,13 +100,20 @@ struct ContentView: View {
                                     .font(.footnote)
                                     .foregroundColor(.gray)
                             } //: VSTACK - LIST ITEM
-                            .listRowBackground(Color.clear) // Used in conjuction with changing the listStyle from InsetGroupedList Style to PlainListStlye to make the background of each row of the list transparent.
+                            //.listRowBackground(Color.clear) // Used in conjuction with changing the listStyle from InsetGroupedList Style to PlainListStlye to make the background of each row of the list transparent.
                         } //: LOOP
                         .onDelete(perform: deleteItems)
                     } //: LIST
                     //.listStyle(InsetGroupedListStyle())
                     .listStyle(PlainListStyle()) // Used in conjuction with the listRowBackground and background Color.clear modifiers to achieve a transparent background. This does change the list style from a InsetGroupedListStyle to a PlainListStyle which may have other impacts but we will have to see.
-                    .background(Color.clear) // Used in conjuction with changing the listStyle from InsetGroupedList Style to PlainListStlye to make the background of the entire list transparent as well as each row as seen in the listRowBackground modifier.
+                    //.background(Color.clear) // Used in conjuction with changing the listStyle from InsetGroupedList Style to PlainListStlye to make the background of the entire list transparent as well as each row as seen in the listRowBackground modifier.
+                    .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.3),radius: 12)
+                    .padding(.vertical, 40)
+                    .padding(.horizontal, 20)
+                    .frame(maxWidth: 640)
+                    .cornerRadius(16)
+                    
+                    
                     
                     
                 } //: VSTACK
@@ -125,6 +132,9 @@ struct ContentView: View {
                 }
                 //#endif
             } //: TOOLBAR
+            .background(
+                BackgroundImageView()
+            )
             .background(backgroundGradient.ignoresSafeArea())
         } //: NAVIGATION
         .navigationViewStyle(StackNavigationViewStyle())
