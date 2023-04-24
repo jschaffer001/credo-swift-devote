@@ -108,16 +108,7 @@ struct ContentView: View {
                     // MARK: - TASKS
                     List {
                         ForEach(items) { item in
-                            VStack(alignment: .leading
-                            ) {
-                                Text(item.task ?? "")
-                                    .font(.headline)
-                                    .fontWeight(.bold)
-                                
-                                Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                                    .font(.footnote)
-                                    .foregroundColor(.gray)
-                            } //: VSTACK - LIST ITEM
+                            ListRowItemView(item: item)
                             //.listRowBackground(Color.clear) // Used in conjuction with changing the listStyle from InsetGroupedList Style to PlainListStlye to make the background of each row of the list transparent.
                         } //: LOOP
                         .onDelete(perform: deleteItems)
