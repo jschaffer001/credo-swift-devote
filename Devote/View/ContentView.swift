@@ -13,11 +13,10 @@ import CoreData
 struct ContentView: View {
     // MARK: - PROPERTY
     
+    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     @State var task: String = ""
+    @State private var showNewTaskItem: Bool = false
     
-    private var isButtonDisabled: Bool {
-        task.isEmpty
-    }
     
     // FETCHING DATA
     @Environment(\.managedObjectContext) private var viewContext
@@ -28,25 +27,7 @@ struct ContentView: View {
     private var items: FetchedResults<Item>
     
     // MARK: - FUNCTION
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-            newItem.task = task
-            newItem.completion = false
-            newItem.id = UUID()
-
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-            
-            task = ""
-            hideKeyboard()
-        }
-    }
+   
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
@@ -65,29 +46,66 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
+               // MARK: - MAIN VIEW
                 VStack {
-                    VStack(spacing: 16) {
-                        TextField("New Task", text: $task)
-                            .padding()
-                            .background(Color(UIColor.systemGray6))
-                            .cornerRadius(10)
-                        
-                        Button(action: {
-                            addItem()
-                        }, label: {
-                            Spacer()
-                            Text("SAVE")
-                            Spacer()
-                        }) //: BUTTON
-                        .disabled(isButtonDisabled) // elegant modifier used with computed property to disable the button
-                        .padding()
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .background(isButtonDisabled ? Color.gray : Color.pink)
-                        .cornerRadius(10)
-                    } //: VSTACK
-                    .padding()
+                    // MARK: - HEADER
                     
+                    HStack(spacing: 10) {
+                        // TITLE
+                        Text("Devote")
+                            .font(.system(.largeTitle, design: .rounded))
+                            .fontWeight(.heavy)
+                            .padding(.leading, 4)
+                            
+                        Spacer()
+                        // EDIT BUTTON
+                        EditButton()
+                            .font(.system(size: 16, weight: .semibold, design: .rounded))
+                            .padding(.horizontal, 10)
+                            .frame(minWidth: 70, minHeight: 24)
+                            .background(
+                                Capsule().stroke(Color.white, lineWidth: 2)
+                            )
+                        
+                        // APPEARANCE BUTTON
+                        Button(action: {
+                            // TOGGLE APPEARANCE
+                            isDarkMode.toggle()
+                        }, label: {
+                            Image(systemName: isDarkMode ? "moon.circle.fill" : "moon.circle")
+                                .resizable()
+                                .frame(width: 24, height: 24)
+                                .font(.system(.title, design: .rounded))
+                        }) //: BUTTON
+                        
+                        
+                    } //: HSTACK
+                    .padding()
+                    .foregroundColor(.white)
+                    
+                    
+                    Spacer(minLength: 80)
+                    
+                    // MARK: - NEW TASK BUTTON
+                    
+                    Button(action: {
+                        showNewTaskItem = true
+                    }, label: {
+                        Image(systemName: "plus.circle")
+                            .font(.system(size: 30, weight: .semibold, design: .rounded))
+                        Text("New Task")
+                            .font(.system(size: 24, weight: .bold, design: .rounded))
+                    })
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 15)
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [Color.pink, Color.blue]), startPoint: .leading, endPoint: .trailing)
+                            .clipShape(Capsule())
+                    )
+                    .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.25), radius: 8, x: 0.0, y: 0.0)
+                    
+                    // MARK: - TASKS
                     List {
                         ForEach(items) { item in
                             VStack(alignment: .leading
@@ -112,11 +130,20 @@ struct ContentView: View {
                     .padding(.horizontal, 20)
                     .frame(maxWidth: 640)
                     .cornerRadius(16)
-                    
-                    
-                    
-                    
                 } //: VSTACK
+                // MARK: - NEW TASK ITEM
+                
+                if showNewTaskItem {
+                    BlankView()
+                        .onTapGesture {
+                            withAnimation() {
+                                showNewTaskItem = false
+                            }
+                        }
+                    
+                    NewTaskItemView(isShowing: $showNewTaskItem)
+                }
+                
             } //: ZSTACK
             // Commented out the following because it does not seem to work any longer when trying to make the background of the list transparent
             // Instead the listStyle was changed to a PlainListStyle rather than a InsetGroupedListStyle with listRow and list backgrounds changed to Color.clear
@@ -125,13 +152,7 @@ struct ContentView: View {
             //    //UITableView.appearance().backgroundColor = UIColor.clear
             //}
             .navigationBarTitle("Daily Tasks", displayMode: .large)
-            .toolbar {
-                //#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                //#endif
-            } //: TOOLBAR
+            .navigationBarHidden(true)
             .background(
                 BackgroundImageView()
             )
