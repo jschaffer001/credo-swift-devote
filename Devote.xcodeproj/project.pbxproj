@@ -14,6 +14,7 @@
 		AC35210729F887F900FA6067 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC35210629F887F900FA6067 /* Assets.xcassets */; };
 		AC35210B29F887F900FA6067 /* DevoteWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AC3520FB29F887F900FA6067 /* DevoteWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AC35211029F88BFD00FA6067 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACFBE1F629CE150100E1F159 /* Assets.xcassets */; };
+		AC35211129F99A2100FA6067 /* Contant.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFBE21D29CE631600E1F159 /* Contant.swift */; };
 		AC9DCB4429F6FC2F00F02EE3 /* ListRowItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9DCB4329F6FC2F00F02EE3 /* ListRowItemView.swift */; };
 		AC9DCB4629F6FFEC00F02EE3 /* CheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9DCB4529F6FFEC00F02EE3 /* CheckboxStyle.swift */; };
 		ACAFAB0229DCE8BB00155068 /* HideKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAFAB0129DCE8BB00155068 /* HideKeyboardExtension.swift */; };
@@ -344,6 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC35211129F99A2100FA6067 /* Contant.swift in Sources */,
 				AC35210529F887F900FA6067 /* DevoteWidget.swift in Sources */,
 				AC35210329F887F900FA6067 /* DevoteWidgetBundle.swift in Sources */,
 			);
